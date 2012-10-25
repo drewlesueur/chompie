@@ -1,0 +1,78 @@
+<style>
+  * {font-family: Helvetica, Arial}
+  table.syntax tr td {
+    font-family: Consolas, Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    vertical-align: middle;
+  }
+  pre {
+    font-family: Consolas, Menlo, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+  }
+  </style>
+<h1>Chompie</h1>
+
+<p><i>
+A high level virtual machine
+</i> <a href="http://github.com/drewlesueur/chompie">source on github</a></p>
+
+<p>
+Chompie simulates a very simple machine.
+This machine can get and set variables and grouped variables (objects and arrays)
+It can do <code>if</code> and goto.
+</p>
+<p>
+It takes an array of (nested) commands and evaluates them.
+</p>
+
+<h2>Usage</h2>
+<p>
+chompie relies on the extremely simple <a href="http://poor-module.drewl.us">poor_module</a>.
+It also uses <a href="http://peppermint-exressions.drewl.us">peppermint-expressions</a> as an easy way to
+create the arrays that chompie uses.
+
+</p>
+<h4>Browser</h4>
+<pre>
+&lt;script src="poor_modules/poor-module.js"&gt;&lt;/script&gt;
+&lt;script src="peppermint-expressions.js"&gt;&lt;/script&gt;
+&lt;script src="chompie.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+var chompie = poorModule("chompie")
+chompie('say: "hello world!"')
+&lt;/script&gt;
+</pre>
+<h4>node.js</h4>
+<pre>
+require("./poor_modules/poor_module.js")
+require("./peppermint-expressions.js")
+require("./chompie.js")
+var chompie = poorModule("chompie")
+chompie('say: "hello world!"')
+</pre>
+</p>
+
+<div id="test-results">
+</div>
+<script src="zepto.min.js"></script>
+<script src="poor_modules/poor-module.js"></script>
+<script src="underscore.js"></script>
+<script>
+  poorModule("underscore", function () { return _ })
+</script>
+<script src="poor_modules/table-test-runner.js"></script>
+<script src="poor_modules/peppermint-expressions.js"></script>
+<script src="poor_modules/fake-script.js"></script>
+<script src="chompie.js"></script>
+<script src="poor_modules/string-test-runner.js"></script>
+<script src="tests.string-tests" type="string-tests"></script>
+<script>
+  var chompie = poorModule("chompie")
+  poorModule("string-test-runner")
+    .outputTestsToTable(
+      "#test-results", ["Chompie code", "result", "comments"],
+      function(input) {
+        return JSON.stringify(chompie(input))
+      }
+    )
+  
+</script>
+

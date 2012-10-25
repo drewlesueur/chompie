@@ -1,0 +1,22 @@
+' "hello world"
+' "hello world"
+' hello world
+
+' hi
+' "hello wolrd"
+' the variable hi defaults to hello world
+
+' say: ' hello world
+same
+' console logging
+
+' add: 1 2
+' 3
+' adding
+
+' add: (add 1 2) (sub 10 4)
+' 7
+' nesting
+
+
+

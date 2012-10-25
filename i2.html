@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+  <head>
+<meta name = "viewport" content = "initial-scale = 1.0">
+<style>
+  * {
+    font-family:Arial;
+    margin: 0; padding: 0;
+  }
+
+</style>
+<script src="underscore-min.js"></script>
+<script src="zepto.min.js"></script>
+<script src="poor_modules/poor-module.js"></script>
+<script src="poor_modules/peppermint-expressions.js"></script>
+</head>
+<body style="height:1200px;">
+ 
+  <script>
+    window.onerror = function (e) {
+      //$(document.body).html(e + "<br>" + e.lineNumber)
+      alert(e)
+      return false
+    }
+  
+  </script>
+  <script src="ch2.js"></script>
+
+</body>
+</html>
+
