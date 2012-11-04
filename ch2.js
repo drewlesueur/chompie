@@ -31,14 +31,14 @@ poorModule("chompie", function () { return function (chunks, scope) {
       reset_i()
   }, step_outof = function () {
       while (is_last_chunk()) {
-        if (chunks_stack_is_empty()) {
-          return break_signal
-        }
         unstack_chunks()
         unstack_i()
         update_chunk()
         call()
         inc_i()
+        if (chunks_stack_is_empty()) {
+          return break_signal
+        }
       }
   }, handle_chunk = function () {
     if (chunk_is_array()) {
