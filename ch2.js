@@ -38,21 +38,26 @@ poorModule("chompie", function () { return function (chunks, scope) {
       into_chunk()
       reset_i()
   }, step_outof = function () {
+    if (chunks_stack_is_empty()) {
+      
+      return break_signal
+    }
+
     unstack_chunks()
     unstack_i()
     update_chunk()
     call()
     inc_i()
-    if (chunks_stack_is_empty()) {
-      return break_signal
-    }
+  
       
   }, handle_chunk = function () {
-    debugger
+    if (is_last_chunk()) {
+      return step_outof()
+    }
+    update_chunk()
+
     if (chunk_is_array()) {
       step_into()
-    } else if (is_last_chunk()) {
-      return step_outof()
     } else {
       call()
       inc_i()
@@ -60,9 +65,10 @@ poorModule("chompie", function () { return function (chunks, scope) {
       //but i only want 1 loop 
       
     }
-  }, update_chunk = function () { chunk = chunks[i]
+  }, update_chunk = function () {
+    chunk = chunks[i]
   }, inc_i = function () { i += 1
-  }, chunk_is_null = function () { return chunk == null
+  }, chunk_is_null = function () { return  chunk == null
   }, is_last_chunk = function () { return i == chunks.length
   }, chunks_stack_is_empty = function () { return chunks_stack.length == 0
   }, unstack_chunks = function () { chunks = chunks_stack.pop()
@@ -72,7 +78,6 @@ poorModule("chompie", function () { return function (chunks, scope) {
     chunks = p(chunks) // use peppermint expressions
   }
   while (true) {
-    update_chunk()
     if (handle_chunk() == break_signal) break;
   }
 }})
